@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.qi4j.samples</groupId>
+    <artifactId>org.qi4j.sample.qiyabe4j</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>org.qi4j.sample.qiyabe4j</name>
+    <url>http://qi4j.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.qi4j>2.0-RC1</version.qi4j>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>qi4j-releases</id>
+            <url>https://repository-qi4j.forge.cloudbees.com/release/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+
+        <!-- Compile -->
+        <dependency>
+            <groupId>org.qi4j.core</groupId>
+            <artifactId>org.qi4j.core.bootstrap</artifactId>
+            <version>${version.qi4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.qi4j.library</groupId>
+            <artifactId>org.qi4j.library.http</artifactId>
+            <version>${version.qi4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.qi4j.library</groupId>
+            <artifactId>org.qi4j.library.conversion</artifactId>
+            <version>${version.qi4j}</version>
+        </dependency>
+
+        <!-- Runtime -->
+        <dependency>
+            <groupId>org.qi4j.core</groupId>
+            <artifactId>org.qi4j.core.runtime</artifactId>
+            <version>${version.qi4j}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>org.qi4j.core</groupId>
+            <artifactId>org.qi4j.core.testsupport</artifactId>
+            <version>${version.qi4j}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>org.qi4j.sample.qiyabe4j.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
