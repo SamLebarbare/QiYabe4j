@@ -14,6 +14,7 @@ public interface DomainEntitiesRepository
 {
 
     Query<PostEntity> posts();
+    PostEntity postByIdentity(String identity);
 
     class Mixin
         implements DomainEntitiesRepository
@@ -29,6 +30,14 @@ public interface DomainEntitiesRepository
             return module.currentUnitOfWork().newQuery( queryBuilder ).
                 orderBy( templateFor( PostEntity.class ).postedAt(), Order.DESCENDING );
         }
+
+        @Override
+        public PostEntity postByIdentity(String identity) {
+            return module.currentUnitOfWork().get(PostEntity.class,identity);
+        }
+        
+        
+        
     }
 
 }

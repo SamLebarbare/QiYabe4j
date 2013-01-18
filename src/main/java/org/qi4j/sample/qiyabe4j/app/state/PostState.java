@@ -21,7 +21,7 @@ import org.qi4j.library.constraints.annotation.MinLength;
 
 public interface PostState
 {
-
+    
     @MinLength( 2 )
     Property<String> title();
 

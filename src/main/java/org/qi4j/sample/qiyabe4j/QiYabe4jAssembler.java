@@ -14,6 +14,7 @@
  */
 package org.qi4j.sample.qiyabe4j;
 
+import org.qi4j.sample.qiyabe4j.pres.http.PostByIdentityJsonServletService;
 import org.qi4j.api.structure.Application;
 import org.qi4j.bootstrap.ApplicationAssembler;
 import org.qi4j.bootstrap.ApplicationAssembly;
@@ -142,6 +143,7 @@ public class QiYabe4jAssembler
 
             addServlets( serve( "/" ).with( WelcomeServletService.class ) ).to( httpModule );
             addServlets( serve( "/api/home" ).with( HomeJsonServletService.class ) ).to( httpModule );
+            addServlets( serve( "/api/post" ).with( PostByIdentityJsonServletService.class ) ).to( httpModule );
         }
     }
 }

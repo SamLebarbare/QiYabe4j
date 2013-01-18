@@ -14,6 +14,7 @@
  */
 package org.qi4j.sample.qiyabe4j.app.domain;
 
+
 import org.qi4j.api.association.Association;
 import org.qi4j.api.common.Optional;
 import org.qi4j.api.entity.EntityComposite;
@@ -33,7 +34,7 @@ import static org.qi4j.api.query.QueryExpressions.*;
 public interface PostEntity
     extends PostState, EntityComposite
 {
-
+    
     @Optional
     Association<AccountEntity> owner();
 
@@ -41,6 +42,8 @@ public interface PostEntity
      * @return Comments made on this PostEntity, in descending chronological order.
      */
     Query<CommentEntity> findComments();
+   
+    
 
     abstract class Mixin
         implements PostEntity
@@ -50,6 +53,8 @@ public interface PostEntity
         private Module module;
         @This
         private PostEntity post;
+        
+        
 
         @Override
         public Query<CommentEntity> findComments()
@@ -61,6 +66,7 @@ public interface PostEntity
             return uow.newQuery( queryBuilder ).
                 orderBy( comment.postedAt(), OrderBy.Order.DESCENDING );
         }
+        
     }
 
 }
