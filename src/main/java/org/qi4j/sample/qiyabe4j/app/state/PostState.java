@@ -12,36 +12,22 @@
  * limitations under the License.
  *
  */
-package org.qi4j.sample.qiyabe4j.app.domain;
-
+package org.qi4j.sample.qiyabe4j.app.state;
 
 import org.joda.time.DateTime;
-import org.qi4j.api.association.Association;
-import org.qi4j.api.association.ManyAssociation;
-import org.qi4j.api.entity.EntityComposite;
-import org.qi4j.api.mixin.Mixins;
 import org.qi4j.api.property.Immutable;
 import org.qi4j.api.property.Property;
+import org.qi4j.library.constraints.annotation.MinLength;
 
+public interface PostState
+{
 
-@Mixins( Post.Mixin.class )
-public interface Post extends EntityComposite {
-    
+    @MinLength( 2 )
     Property<String> title();
-    
+
     @Immutable
     Property<DateTime> postedAt();
-    
+
+    @MinLength( 24 )
     Property<String> content();
-    
-    Association<Account> owner();
-    
-    ManyAssociation<Comment> comments();
-    
-    
-    
-    
-    abstract class Mixin implements Post {
-        
-    }
 }

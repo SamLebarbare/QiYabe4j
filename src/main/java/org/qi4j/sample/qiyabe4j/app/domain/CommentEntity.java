@@ -14,23 +14,17 @@
  */
 package org.qi4j.sample.qiyabe4j.app.domain;
 
+import org.qi4j.sample.qiyabe4j.app.state.CommentState;
 import org.qi4j.api.association.Association;
 import org.qi4j.api.common.Optional;
 import org.qi4j.api.entity.EntityComposite;
-import org.qi4j.api.mixin.Mixins;
-import org.qi4j.api.property.Property;
 
-@Mixins( Comment.Mixin.class )
-public interface Comment extends EntityComposite {
-    
-    Property<String> content();
-    
+public interface CommentEntity
+    extends CommentState, EntityComposite
+{
+
     @Optional
-    Association<Account> owner();
-    
-    Association<Post> post();
-    
-    abstract class Mixin implements Comment {
-        
-    }
+    Association<AccountEntity> owner();
+
+    Association<PostEntity> post();
 }

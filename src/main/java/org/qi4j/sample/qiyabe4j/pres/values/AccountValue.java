@@ -12,32 +12,12 @@
  * limitations under the License.
  *
  */
-package org.qi4j.sample.qiyabe4j.app.domain;
+package org.qi4j.sample.qiyabe4j.pres.values;
 
-import org.qi4j.api.association.ManyAssociation;
-import org.qi4j.api.entity.EntityComposite;
-import org.qi4j.api.mixin.Mixins;
-import org.qi4j.api.property.Property;
+import org.qi4j.api.value.ValueComposite;
+import org.qi4j.sample.qiyabe4j.app.state.AccountState;
 
-@Mixins( Account.Mixin.class )
-public interface Account extends EntityComposite {
-    
-    Property<String> displayName();
-    
-    Property<String> login();
-    
-    Property<String> password();
-    
-    Property<String> email();
-    
-    ManyAssociation<Post> posts();
-    
-    ManyAssociation<Comment> comments();
-    
-    abstract class Mixin implements Account {
-        
-    }
-    
-    
-    
+public interface AccountValue
+    extends AccountState, ValueComposite
+{
 }
