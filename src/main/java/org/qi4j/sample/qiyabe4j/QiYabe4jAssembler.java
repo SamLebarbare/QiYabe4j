@@ -14,7 +14,6 @@
  */
 package org.qi4j.sample.qiyabe4j;
 
-import org.qi4j.sample.qiyabe4j.pres.http.PostByIdentityJsonServletService;
 import org.qi4j.api.structure.Application;
 import org.qi4j.bootstrap.ApplicationAssembler;
 import org.qi4j.bootstrap.ApplicationAssembly;
@@ -32,10 +31,11 @@ import org.qi4j.library.http.WelcomeServletService;
 import org.qi4j.sample.qiyabe4j.app.domain.AccountEntity;
 import org.qi4j.sample.qiyabe4j.app.domain.CommentEntity;
 import org.qi4j.sample.qiyabe4j.app.domain.DomainBootstrapService;
-import org.qi4j.sample.qiyabe4j.app.domain.PostEntity;
 import org.qi4j.sample.qiyabe4j.app.domain.DomainEntitiesFactory;
 import org.qi4j.sample.qiyabe4j.app.domain.DomainEntitiesRepository;
+import org.qi4j.sample.qiyabe4j.app.domain.PostEntity;
 import org.qi4j.sample.qiyabe4j.pres.http.HomeJsonServletService;
+import org.qi4j.sample.qiyabe4j.pres.http.PostByIdentityJsonServletService;
 import org.qi4j.sample.qiyabe4j.pres.values.AccountValue;
 import org.qi4j.sample.qiyabe4j.pres.values.CommentValue;
 import org.qi4j.sample.qiyabe4j.pres.values.PostValue;

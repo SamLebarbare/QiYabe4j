@@ -6,6 +6,7 @@ import org.qi4j.api.query.Query;
 import org.qi4j.api.query.QueryBuilder;
 import org.qi4j.api.query.grammar.OrderBy.Order;
 import org.qi4j.api.structure.Module;
+import org.qi4j.api.unitofwork.NoSuchEntityException;
 
 import static org.qi4j.api.query.QueryExpressions.*;
 
@@ -14,7 +15,9 @@ public interface DomainEntitiesRepository
 {
 
     Query<PostEntity> posts();
-    PostEntity postByIdentity(String identity);
+
+    PostEntity postByIdentity( String identity )
+        throws NoSuchEntityException;
 
     class Mixin
         implements DomainEntitiesRepository
@@ -32,12 +35,11 @@ public interface DomainEntitiesRepository
         }
 
         @Override
-        public PostEntity postByIdentity(String identity) {
-            return module.currentUnitOfWork().get(PostEntity.class,identity);
+        public PostEntity postByIdentity( String identity )
+            throws NoSuchEntityException
+        {
+            return module.currentUnitOfWork().get( PostEntity.class, identity );
         }
-        
-        
-        
     }
 
 }

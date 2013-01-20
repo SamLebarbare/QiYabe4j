@@ -13,6 +13,7 @@ import org.qi4j.api.json.JSONWriterSerializer;
 import org.qi4j.api.mixin.Mixins;
 import org.qi4j.api.service.ServiceComposite;
 import org.qi4j.api.structure.Module;
+import org.qi4j.api.unitofwork.NoSuchEntityException;
 import org.qi4j.api.unitofwork.UnitOfWork;
 import org.qi4j.api.usecase.UsecaseBuilder;
 import org.qi4j.library.conversion.values.EntityToValue;
@@ -44,23 +45,27 @@ public interface PostByIdentityJsonServletService
             UnitOfWork uow = module.newUnitOfWork( UsecaseBuilder.newUsecase( "PostByIdentiy JSON" ) );
             try
             {
-          
-                PostEntity postEntity = entitiesRepository.postByIdentity(req.getParameterValues("id")[0]);
+
+                PostEntity postEntity = entitiesRepository.postByIdentity( req.getParameterValues( "id" )[0] );
 
                 // Convert entity to value
-                PostValue postValue =  entityToValue.convert( PostValue.class, postEntity );
-                
+                PostValue postValue = entityToValue.convert( PostValue.class, postEntity );
+
                 // Serialize value to JSON
                 resp.setCharacterEncoding( "UTF-8" );
                 resp.setContentType( "application/json" );
-                new JSONWriterSerializer( resp.getWriter() ).serialize(postValue);
+                new JSONWriterSerializer( resp.getWriter() ).serialize( postValue );
                 resp.getWriter().close();
-                 
-                 
+
+
             }
             catch( JSONException ex )
             {
                 throw new ServletException( ex.getMessage(), ex );
+            }
+            catch( NoSuchEntityException ex )
+            {
+                resp.setStatus( 404 );
             }
             finally
             {
